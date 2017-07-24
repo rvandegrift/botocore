@@ -640,6 +640,9 @@ class TestCreateCredentialResolver(BaseEnvVar):
             return self.session_instance_vars.get(name)
         elif methods is not None and 'env' in methods:
             return self.fake_env_vars.get(name)
+        else:
+            return self.fake_env_vars.get(name) or \
+                self.session_instance_vars.get(name)
 
     def test_create_credential_resolver(self):
         resolver = credentials.create_credential_resolver(self.session)
